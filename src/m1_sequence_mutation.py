@@ -88,6 +88,7 @@ def zero_changer(tuple_of_lists):
     #    DIFFICULTY:      7
     #    TIME ESTIMATE:  10 minutes.
     # ------------------------------------------------------------------
+
     changer = 1
     for k in range(len(tuple_of_lists)):
         for i in range(len(tuple_of_lists[k])):
