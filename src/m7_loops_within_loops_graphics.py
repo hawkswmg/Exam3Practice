@@ -132,7 +132,6 @@ def hourglass(window, n, point, radius, color):
         down_point.x = og_point.x - (radius * (k + 1))
         up_point.y -= y_distance
         down_point.y += y_distance
-    print()
 
 
 def run_test_many_hourglasses():
