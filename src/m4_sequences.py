@@ -134,13 +134,19 @@ def practice_problem4a(sequence):
       :type sequence: list | tuple | string
     """
     ####################################################################
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #     The testing code is already written for you (above).
     ####################################################################
     # DIFFICULTY AND TIME RATINGS (see top of this file for explanation)
     #    DIFFICULTY:      7
     #    TIME ESTIMATE:   15 minutes.
     ####################################################################
+
+    doubles = []
+    for k in range(len(sequence) - 1):
+        if sequence[k] == sequence[k + 1]:
+            doubles.append(k)
+    return doubles
 
 
 def run_test_practice_problem4b():
@@ -197,13 +203,22 @@ def practice_problem4b(sequence):
       :type sequence: (list | tuple) of (float | int)
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #     The testing code is already written for you (above).
     ####################################################################
     # DIFFICULTY AND TIME RATINGS (see top of this file for explanation)
     #    DIFFICULTY:      5
     #    TIME ESTIMATE:   10 minutes.
     ####################################################################
+
+    biggest_num = None
+    for k in range (len(sequence)):
+        if k % 2 == 0:
+            if biggest_num == None:
+                biggest_num = sequence[k]
+            if sequence[k] > biggest_num:
+                biggest_num = sequence[k]
+    return biggest_num
 
 
 def run_test_practice_problem4c():
@@ -307,6 +322,13 @@ def practice_problem4c(points):
     #    TIME ESTIMATE:   15 minutes.
     ####################################################################
 
+    for k in range(len(points)):
+        if is_prime(points[k].x) == True and is_prime(points[k].y) == True:
+            new_y = points[k].x
+            points[k].x = points[k].y
+            points[k].y = new_y
+            return points[k]
+    return 'Not found'
 
 def run_test_practice_problem4d():
     """ Tests the    practice_problem4d    function. """
