@@ -45,7 +45,7 @@ def main():
 def run_test_practice_problem3():
     """ Tests the   practice_problem3  function. """
     ####################################################################
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  practice_problem3  function defined below.
     #   Include at least ** 2 ** ADDITIONAL tests beyond those we wrote.
     #
@@ -122,6 +122,11 @@ def run_test_practice_problem3():
     # ------------------------------------------------------------------
     # Run the 14 tests in the   tests   list constructed above.
     # ------------------------------------------------------------------
+
+    tests.append(st.SimpleTestCase(practice_problem3, [-10, 5, 0.25],[-6,
+                                                                      -5, 0,
+                                                                      1, 2]))
+
     st.SimpleTestCase.run_tests('practice_problem3', tests)
 
     ####################################################################
@@ -134,6 +139,8 @@ def run_test_practice_problem3():
     # SUGGESTION: Ask an assistant to CHECK your tests to confirm
     #             that they are adequate tests!
     ####################################################################
+
+
 
 
 def practice_problem3(start, n, threshold):
@@ -208,7 +215,7 @@ def practice_problem3(start, n, threshold):
       :type threshold: float
     """
     ####################################################################
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Some tests are already written for you (above),
     #          but you are required to write ADDITIONAL tests (above).
     ####################################################################
@@ -217,6 +224,20 @@ def practice_problem3(start, n, threshold):
     #    TIME ESTIMATE:   < 15 minutes.
     ####################################################################
 
+    if abs(threshold) < math.sqrt(2):
+        other_list = []
+        for k in range(10000000):
+            c = math.cos(start + k)
+            s = math.sin(start + k)
+            if c + s > threshold:
+                other_list.append(start + k)
+            if len(other_list) == n:
+                return other_list
+    else:
+        other_list = []
+        for k in range(start, start + n):
+            other_list.append(k)
+    return other_list
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
