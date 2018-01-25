@@ -5,8 +5,8 @@ This problem provides practice at:
   ***  LOOPS WITHIN LOOPS in 2D GRAPHICS problems.  ***
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Megan Hawksworth.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ########################################################################
 # Students:
@@ -29,6 +29,7 @@ Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
 ########################################################################
 
 import rosegraphics as rg
+import math
 
 
 def main():
@@ -89,7 +90,7 @@ def hourglass(window, n, point, radius, color):
     a color that rosegraphics understands.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #       We provided some tests for you (above).
     # ------------------------------------------------------------------
     ####################################################################
@@ -101,6 +102,37 @@ def hourglass(window, n, point, radius, color):
     #    DIFFICULTY:      8
     #    TIME ESTIMATE:  25 minutes (warning: this problem is challenging)
     # ------------------------------------------------------------------
+
+    og_point = point
+    up_point = rg.Point(og_point.x, og_point.y)
+    down_point = rg.Point(og_point.x, og_point.y)
+    hypt = (2 * radius) ** 2
+    x_length = radius ** 2
+    y_distance = math.sqrt(hypt - x_length)
+    x_distance = radius * 2
+
+    for k in range(n):
+        for i in range(k + 1):
+            circle_up = rg.Circle(up_point, radius)
+            circle_up.fill_color = color
+            circle_up.attach_to(window)
+            circle_down = rg.Circle(down_point, radius)
+            circle_down.fill_color = color
+            circle_down.attach_to(window)
+            line_up = rg.Line(rg.Point(up_point.x - radius, up_point.y),
+                              rg.Point(up_point.x + radius, up_point.y))
+            line_up.attach_to(window)
+            line_down = rg.Line(rg.Point(down_point.x - radius, down_point.y),
+                              rg.Point(down_point.x + radius, down_point.y))
+            line_down.attach_to(window)
+            window.render()
+            up_point.x = up_point.x + x_distance
+            down_point.x = down_point.x + x_distance
+        up_point.x = og_point.x - (radius * (k + 1))
+        down_point.x = og_point.x - (radius * (k + 1))
+        up_point.y -= y_distance
+        down_point.y += y_distance
+    print()
 
 
 def run_test_many_hourglasses():
